@@ -1,0 +1,7 @@
+{
+  "name": "KaiOS 3D Glow Orb",
+  "description": "A premium 3D marble rolling puzzle platformer designed for KaiOS devices with custom retro-synth sound effects and beautiful neon aesthetics.",
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
