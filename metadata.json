@@ -1,7 +1,6 @@
 {
-  "name": "KaiOS 3D Glow Orb",
-  "description": "A premium 3D marble rolling puzzle platformer designed for KaiOS devices with custom retro-synth sound effects and beautiful neon aesthetics.",
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
+  "name": "KaiOS 3D Cyber Tilt",
+  "description": "An immersive 3D physical tilt-board labyrinth game designed for KaiOS with glowing neon grids, rolling custom physics, and reactive retro-synthesizers.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

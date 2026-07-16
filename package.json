@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
-    "@sveltejs/vite-plugin-svelte": "^7.2.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
     "@tailwindcss/vite": "^4.1.14",
     "@types/three": "^0.185.1",
     "@vitejs/plugin-react": "^5.0.4",
