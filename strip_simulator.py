@@ -11,26 +11,43 @@ def strip_sim():
         content = f.read()
 
     start_tag = "{#if isDeviceBuild}"
-    middle_tag = "{:else}"
-    
     start_idx = content.find(start_tag)
     if start_idx == -1:
         print("Error: Could not find start tag '{#if isDeviceBuild}' in App.svelte")
         return False
-        
-    middle_idx = content.find(middle_tag, start_idx)
+
+    # Robust Svelte block parser to find the top-level {:else} and {/if} matching {#if isDeviceBuild}
+    depth = 1
+    idx = start_idx + len(start_tag)
+    middle_idx = -1
+    end_idx = -1
+    n = len(content)
+    while idx < n:
+        nxt = content.find('{', idx)
+        if nxt == -1:
+            break
+        if content.startswith('{#if', nxt) or content.startswith('{#each', nxt) or content.startswith('{#await', nxt):
+            depth += 1
+        elif content.startswith('{/if}', nxt) or content.startswith('{/each}', nxt) or content.startswith('{/await}', nxt):
+            depth -= 1
+            if depth == 0:
+                end_idx = nxt
+                break
+        elif content.startswith('{:else', nxt):
+            if depth == 1:
+                middle_idx = nxt
+        idx = nxt + 1
+
     if middle_idx == -1:
-        print("Error: Could not find middle tag '{:else}' in App.svelte")
+        print("Error: Could not find matching top-level '{:else}' in App.svelte")
+        return False
+    if end_idx == -1:
+        print("Error: Could not find matching top-level '{/if}' in App.svelte")
         return False
         
     style_idx = content.find("<style>")
     if style_idx == -1:
         print("Error: Could not find <style> tag in App.svelte")
-        return False
-        
-    end_idx = content.rfind("{/if}", middle_idx, style_idx)
-    if end_idx == -1:
-        print("Error: Could not find closing '{/if}' before <style> tag")
         return False
         
     # Extract the device-only HTML template
