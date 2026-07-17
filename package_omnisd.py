@@ -35,7 +35,8 @@ def main():
             "url": "http://kaiostech.com"
         },
         "origin": "app://cybertilt",
-        "type": "privileged",
+        "type": "web",
+        "fullscreen": "true",
         "permissions": {},
         "locales": {
             "en-US": {
